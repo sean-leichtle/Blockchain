@@ -22,7 +22,7 @@ class Block(object):
         t1 = time()
         while self.hash_value[0:work] != '0' * work:    # nonce values are tried
             self.nonce += 1                             # until a hash value is found
-            self.hash_value = self.hash_block()         # with starts with -work- * 0en
+            self.hash_value = self.hash_block()         # which starts with -work- * 0en
             print(f"\r{timer_chs[self.nonce % len(timer_chs)]}", end="", flush=True)    #### feedback that a computation is running - can be removed
         t2 = time()
         self.mining_time = t2 - t1
