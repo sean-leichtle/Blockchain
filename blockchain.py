@@ -14,16 +14,16 @@ class Block(object):
 
     def hash_block(self) -> str:
         enc = (self.name + self.transactions + str(self.nonce) + str(self.previous_hash)).encode('utf-8')
-        m = hashlib.sha256(enc) # der eigentliche Hashingvorgang
-        return m.hexdigest()    # hier wird der Hashwert oder "digest" als Hexadezimalzahl zurückgegeben
+        m = hashlib.sha256(enc) # hashing procedure
+        return m.hexdigest()    # the hash value or "digest" is returned as a hexadecimal
 
     def mine(self, work) -> None:
-        timer_chs = ['|', '/', '-', '\\']   #### Feedback, dass eine Berechnung laeuft - kann entfernt werden
+        timer_chs = ['|', '/', '-', '\\']   #### feedback that a computation is running - can be removed
         t1 = time()
-        while self.hash_value[0:work] != '0' * work:    # hier werden Noncewerten auspropiert,
-            self.nonce += 1                             # bis einen Hashwert gefunden wurde,
-            self.hash_value = self.hash_block()         # der mit -work- * 0en anfängt
-            print(f"\r{timer_chs[self.nonce % len(timer_chs)]}", end="", flush=True)    #### Feedback, dass eine Berechnung laeuft - kann entfernt werden
+        while self.hash_value[0:work] != '0' * work:    # nonce values are tried
+            self.nonce += 1                             # until a hash value is found
+            self.hash_value = self.hash_block()         # with starts with -work- * 0en
+            print(f"\r{timer_chs[self.nonce % len(timer_chs)]}", end="", flush=True)    #### feedback that a computation is running - can be removed
         t2 = time()
         self.mining_time = t2 - t1
 
