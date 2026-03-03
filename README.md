@@ -1,0 +1,1 @@
+A rudimentary blockchain implementation for classroom use.
